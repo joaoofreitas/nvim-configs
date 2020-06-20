@@ -1,4 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =2
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/johnny/.config/alacritty'
+let g:netrw_dirhist_9='/home/johnny/.config'
+let g:netrw_dirhist_8='/home/johnny/.config/alacritty'
+let g:netrw_dirhist_7='/home/johnny/.config'
+let g:netrw_dirhist_6='/home/johnny/.config/alacritty'
+let g:netrw_dirhist_5='/home/johnny/.config'
+let g:netrw_dirhist_4='/home/johnny/.config/alacritty'
+let g:netrw_dirhist_3='/home/johnny/.config'
 let g:netrw_dirhist_2='/home/johnny/.config/bspwm'
 let g:netrw_dirhist_1='/usr/lib/urxvt/perl'
