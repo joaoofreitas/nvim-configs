@@ -4,6 +4,7 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} 
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+	Plug 'rust-lang/rust.vim'
 call plug#end()
 
 "Gruvbox Theme Config
