@@ -1,8 +1,8 @@
 call plug#begin()
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'morhetz/gruvbox'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'} 
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 	Plug 'rust-lang/rust.vim'
 call plug#end()
@@ -40,11 +40,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-
-"Deoplete auto-complete Config
-
-let g:deoplete#enable_at_startup = 1
 
 "Simple Config Commands
 syntax on
