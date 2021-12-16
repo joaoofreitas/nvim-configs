@@ -1,5 +1,8 @@
 call plug#begin()
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'neovim/nvim-lsp'
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'folke/lsp-colors.nvim'
+	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 	Plug 'morhetz/gruvbox'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -7,12 +10,23 @@ call plug#begin()
 	Plug 'rust-lang/rust.vim'
 call plug#end()
 
-"Gruvbox Theme Config
-"
+" Gruvbox Theme Config
+let g:gruvbox_contrast_dark = 'hard'
+if exists('+termguicolors')
+    let &t_8f = "\<ESC[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<ESC[38;2;%lu;%lu;%lum"
+endif
+let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
 set background=dark
-
 let g:airline_theme='gruvbox'
+
+" LSP
+lua << EOF
+local coq = require'coq'
+require'lspconfig'.gopls.setup{ coq.lsp_ensure_capabilities() }
+EOF
+autocmd VimEnter * COQnow
 
 " Airline Config
 let g:airline_powerline_fonts = 1
@@ -41,7 +55,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 
-"Simple Config Commands
+" Simple Config Commands
 syntax on
 set cursorline
 set hidden
@@ -50,8 +64,7 @@ set inccommand=split
 set mouse=a
 set clipboard+=unnamedplus
 set shiftwidth=4
-
-
+set cursorline
 
 " Markdown Configs
 let g:mkdp_auto_start = 0
