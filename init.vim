@@ -64,7 +64,6 @@ set inccommand=split
 set mouse=a
 set clipboard+=unnamedplus
 set shiftwidth=4
-set cursorline
 
 " Markdown Configs
 let g:mkdp_auto_start = 0
