@@ -7,6 +7,9 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+	Plug 'lervag/vimtex'
+	Plug 'https://github.com/joaoofreitas/vim-godebug', {'branch' : 'feat/experimental'}
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'rust-lang/rust.vim'
 call plug#end()
 
@@ -25,8 +28,16 @@ let g:airline_theme='gruvbox'
 lua << EOF
 local coq = require'coq'
 require'lspconfig'.gopls.setup{ coq.lsp_ensure_capabilities() }
+require'lspconfig'.pyright.setup{ coq.lsp_ensure_capabilities() }
+
 EOF
 autocmd VimEnter * COQnow
+
+" VimTex
+let g:vimtex_compiler_method = 'latexrun'
+let maplocalleader = ","
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 
 " Airline Config
 let g:airline_powerline_fonts = 1
