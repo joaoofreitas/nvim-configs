@@ -29,6 +29,7 @@ lua << EOF
 local coq = require'coq'
 require'lspconfig'.gopls.setup{ coq.lsp_ensure_capabilities() }
 require'lspconfig'.pyright.setup{ coq.lsp_ensure_capabilities() }
+require'lspconfig'.ccls.setup{ coq.lsp_ensure_capabilities() }
 
 EOF
 autocmd VimEnter * COQnow
