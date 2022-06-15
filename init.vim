@@ -1,13 +1,13 @@
 call plug#begin()
 	Plug 'neovim/nvim-lsp'
 	Plug 'neovim/nvim-lspconfig'
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'folke/lsp-colors.nvim'
 	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 	Plug 'morhetz/gruvbox'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-	Plug 'lervag/vimtex'
 	Plug 'https://github.com/joaoofreitas/vim-godebug', {'branch' : 'feat/experimental'}
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'rust-lang/rust.vim'
@@ -34,11 +34,37 @@ require'lspconfig'.ccls.setup{ coq.lsp_ensure_capabilities() }
 EOF
 autocmd VimEnter * COQnow
 
-" VimTex
-let g:vimtex_compiler_method = 'latexrun'
-let maplocalleader = ","
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" Treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "lua", "rust" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+
+EOF
 
 " Airline Config
 let g:airline_powerline_fonts = 1
