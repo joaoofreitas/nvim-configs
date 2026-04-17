@@ -4,6 +4,8 @@ call plug#begin()
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'folke/lsp-colors.nvim'
 	Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 	Plug 'morhetz/gruvbox'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -12,6 +14,13 @@ call plug#begin()
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 	Plug 'rust-lang/rust.vim'
 call plug#end()
+
+" Find files using Telescope command-line sugar.
+nnoremap <Space>ff <cmd>Telescope find_files<cr>
+nnoremap <Space>fg <cmd>Telescope live_grep<cr>
+nnoremap <Space>fb <cmd>Telescope buffers<cr>
+nnoremap <Space>fh <cmd>Telescope help_tags<cr>
+
 
 " Gruvbox Theme Config
 let g:gruvbox_contrast_dark = 'hard'
