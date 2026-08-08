@@ -1,24 +1,24 @@
---return {
---  "loctvl842/monokai-pro.nvim",
---  lazy = false,
---  priority = 1000,
---  config = function()
---    require("monokai-pro").setup({
---      transparent_background = false,
---      terminal_colors = true,
---      devicons = true, -- requires nvim-web-devicons
---      filter = "spectrum", -- options: classic, machine, octagon, ristretto, spectrum
---    })
---    vim.cmd([[colorscheme monokai-pro]])
---  end,
---}
-
 return {
-  "dasupradyumna/midnight.nvim",
+  "EdenEast/nightfox.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    vim.opt.background = "dark"
-    vim.cmd([[colorscheme midnight]])
+    require("nightfox").setup({
+      options = {
+        transparent = false,
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          functions = "italic,bold",
+          variables = "italic",
+          conditionals = "bold",
+          constants = "bold",
+          numbers = "bold",
+          operators = "bold",
+          types = "italic,bold",
+        },
+      },
+    })
+    vim.cmd([[colorscheme carbonfox]])
   end,
 }
